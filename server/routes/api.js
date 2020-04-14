@@ -1,12 +1,13 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/", function(req, res, next){
-    res.send("blank");
+
+/**
+ * create collections
+ */
+router.get("/test", function(req, res, next){
+    res.send("createCollection url hit");
     // mongoUtil.createCollection("signup");
 })
 
-router.get("/test", function(req, res, next){
-    res.send("test");
-    // mongoUtil.createCollection("signup");
-})
+module.exports = router;
