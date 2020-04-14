@@ -1,7 +1,7 @@
 {
- 	"name": "Node.js Sample",
- 	"description": "A barebones Node.js app using Express 4",
- 	"repository": "https://github.com/mail2sujitsingh/ProjectNode",
- 	"keywords": ["node", "express", "static"],
- 	"image": "heroku/nodejs"
- 	}
+  "name": "Node.js sample application",
+  "description": "trying to run sample application",
+  "repository": "https://github.com/rajesh23205/nodeTest1",
+  "keywords": ["node","express","static"],
+  "image": "heroku/nodejs"
+}
