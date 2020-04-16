@@ -4,6 +4,10 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const path = require('path');
 var mongoUtil = require( './server/mongoUtil' );
+const cors = require('cors');
+
+// CORS Middleware
+app.use(cors());
 
 mongoUtil.connectToServer();
 const api = require('./server/routes/api');
