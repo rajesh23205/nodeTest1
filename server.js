@@ -6,7 +6,7 @@ const path = require('path');
 
 const api = require('./server/routes/api');
 
-app.use(express.static(path.join(__dirname, 'fagli/dist/fagli')));
+app.use(express.static(path.join(__dirname, 'dist/fagli')));
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 
@@ -17,7 +17,7 @@ app.use('/', api);
 //     res.send("Hello world");
 // });
 app.get('*',(req, res)=>{
-    res.sendFile(path.join(__dirname,'fagli/dist/fagli/index.html'));
+    res.sendFile(path.join(__dirname,'dist/fagli/index.html'));
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
