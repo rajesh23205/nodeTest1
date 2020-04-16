@@ -1,0 +1,132 @@
+// #registerForm{
+//   border: 3px solid #7FDBFF;
+//   padding: 20px;
+//   margin-bottom: 50px;
+// }
+
+// button{
+//   min-width: 100px;
+// }
+
+#registerForm{
+  position: relative;
+}
+
+.alert{
+  position: fixed;
+  right: 1%;
+  top: 5%;
+  width: 30%;
+}
+
+.form-title{
+  color: #343a40;
+  font-size: x-large;
+  font-weight: 700;
+  margin-bottom: 3%;
+  font-family: serif;
+}
+
+.loader {
+  border: 4px solid #c2d6d6;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// h1 {
+//   width: 100%;
+//   text-align: center;
+//   border-bottom: 1px solid #cdd8d8;
+//   line-height: 0.1em;
+//   margin: 10px 0 20px;
+// }
+
+// h1 span {
+//    background:#fff;
+//    padding:0 10px;
+// }
+
+.container{
+  margin-top: 30px;
+  padding: 50px;
+  margin-bottom: 30px;
+  width: 600px;
+}
+
+.caption{
+  color: #8f8f8f;
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    width: 450px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 350px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    width: 250px;
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .container {
+    width: 200px;
+    padding: 10px;
+  }
+}
+
+input, textarea, select{
+  border-radius: unset;
+  background-color: unset;
+}
+
+input:focus, textarea:focus, select:focus{
+  color: black !important;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: white;
+}
+
+.registerOverlay{
+  height: 110%;
+  width: 110%;
+  background-color: black;
+  opacity: 0.2;
+  position: absolute;
+  z-index: -1;
+  margin-top: -5%;
+  margin-left: -5%;
+}

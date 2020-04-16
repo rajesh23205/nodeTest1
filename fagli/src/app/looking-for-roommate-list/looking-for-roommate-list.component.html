@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div *ngFor="let user of intreastedUserList" class="responsive">
+  <div class="gallery">
+    <div class="card-body">
+      <div class="desc">
+        <h5 class="card-title">{{user.finderUserName}}</h5>
+        <p>{{user.visitPurpose}}</p>
+        <p>{{user.details}}</p>
+        <p>{{user.dateRange}}</p>
+        <!-- <p class="card-text">{{hotel.area}} <br /> {{hotel.city}} <br /> {{hotel.state}}</p>
+        <p class="card-text">Available in <strong>{{hotel.minRoomCharge}}</strong></p> -->
+        <!-- <a *ngIf="loggedUserId !== user.finderUserID" (click)="sendResponse(user._id)" class="btn btn-primary mb-2">Send response</a><br />
+        <a *ngIf="user.intreastedUsers.includes(loggedUserId) && loggedUserId !== user.finderUserID" (click)="sendResponse(user._id)" class="btn btn-primary mb-2">Response sent</a><br /> -->
+        <a *ngIf="user.intreastedUsers.includes(loggedUserId) && loggedUserId !== user.finderUserID" class="btn btn-primary mb-2">Response sent</a><br />
+        <a *ngIf="!user.intreastedUsers.includes(loggedUserId) && loggedUserId !== user.finderUserID" (click)="sendResponse(user._id)" class="btn btn-primary mb-2">Send response</a><br />
+        <a [routerLink]="['/profile', user.finderUserID]" class="btn btn-primary">Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="showsuccess" class="alert alert-success" role="alert">
+  <strong>Congratulaions!</strong>
+  Signup successfully, Please login.
+  <button type="button" class="close" (click)="hideSuccessAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div> -->
+<div *ngIf="showDanger" class="alert alert-danger" role="alert">
+  <strong>OOPS!</strong>
+  Getting some error, Please try again after few minutes.
+  <button type="button" class="close" (click)="hideDangerAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

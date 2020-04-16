@@ -1,0 +1,30 @@
+form{
+  width: 30%;
+  margin: auto;
+}
+
+.errorBorder{
+  border: 1px solid red;
+}
+
+.errorText{
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.customWidth{
+  width: 225px;
+}
+
+input, textarea, select{
+  background-color: unset;
+  color: white;
+  width: 225px;
+}
+
+.alert{
+  position: fixed;
+  right: 1%;
+  top: 5%;
+  width: 30%;
+}

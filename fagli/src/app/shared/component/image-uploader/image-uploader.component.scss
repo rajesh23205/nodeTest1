@@ -1,0 +1,11 @@
+.container{
+  text-align: center;
+}
+.camera-icon{
+  position: absolute;
+  margin-left: 110px;
+  margin-top: 10px;
+  &:hover{
+    cursor: pointer;
+  }
+}

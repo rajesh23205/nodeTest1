@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="responsive">
+  <div class="gallery">
+    <div class="card-body">
+      <div *ngIf="requestData" class="desc">
+        <h5 class="card-title">{{requestData.finderUserName}}</h5>
+        <p class="card-text">{{requestData.visitPurpose}}</p>
+        <p class="card-text">{{requestData.details}}</p>
+        <p class="card-text">{{requestData.dateRange}}</p>
+        <!-- <p class="card-text">Available in <strong>{{hotel.minRoomCharge}}</strong></p>
+        <a [routerLink]="['/hotelDetails', hotel._id, hotel.userId]" class="btn btn-primary">Details</a> -->
+      </div>
+    </div>
+  </div>
+</div>

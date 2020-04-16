@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- <div class="col-sm text-center mb-2">
+      <div class="active-cyan-4 width90">
+        <input id="hotelName" [(ngModel)]="hotelName" class="form-control" type="text" placeholder="Hotel name" aria-label="Search" (change)="getData($event)">
+      </div>
+    </div> -->
+    <div class="col-sm text-center mb-2">
+      <select id="stateName" [(ngModel)]="state" class="form-control width90" (change)="getData($event)">
+        <option>Select State</option>
+        <option *ngFor="let state of stateList">{{state}}</option>
+      </select>
+    </div>
+    <div class="col-sm text-center mb-2">
+      <select id="cityName" [(ngModel)]="city" class="form-control width90" (change)="getData($event)">
+        <option>Select City</option>
+        <option *ngFor="let city of cityList">{{city}}</option>
+      </select>
+    </div>
+    <div class="col-sm text-center mb-2">
+      <select id="areaName" [(ngModel)]="area" class="form-control width90" (change)="getData($event)">
+        <option>Select Area</option>
+        <option *ngFor="let area of areaList">{{area}}</option>
+      </select>
+    </div>
+    <div class="col-sm text-center mb-2">
+      <select id="maxRent" [(ngModel)]="maxRent" class="form-control width90" (change)="getData($event)">
+        <option>Max Rent</option>
+        <option>300</option>
+        <option>400</option>
+        <option>500</option>
+        <option>600</option>
+        <option>700</option>
+        <option>800</option>
+        <option>900</option>
+      </select>
+    </div>
+    <!-- <div class="col-sm text-center mb-2">
+      <button type="button" class="btn btn-outline-success width80" (click)="onSearchClick()">Search</button>
+    </div> -->
+  </div>
+  <div class="dropdown-divider"></div>
+</div>

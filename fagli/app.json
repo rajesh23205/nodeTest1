@@ -1,0 +1,7 @@
+{
+  "name": "Node.js fagli",
+  "description": "trying to run fagli",
+  "repository": "https://github.com/rajesh23205/fagli",
+  "keywords": ["node","express","static"],
+  "image": "heroku/nodejs"
+}

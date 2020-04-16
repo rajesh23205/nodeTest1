@@ -1,0 +1,9 @@
+<div class="container">
+  <div *ngIf="isImage" class="preview-image">
+    <img [src]="imageUrl" alt="Cinque Terre" width="150" height="100">
+  </div>
+  <div *ngIf="!isImage" class="upload-image">
+    <img class="camera-icon" src="../../../../assets/image/shared/camera-icon.png" alt="Cinque Terre" width="30" height="30" (click)="cameraClickHandler()">
+    <img src="../../../../assets/image/shared/no-image.png" alt="Cinque Terre" width="150" height="100">
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<app-header></app-header>
+<ul class="list-group mt-4">
+  <li *ngFor="let data of notificationData" class="list-group-item">
+    {{data.intreastedUserName}} wants to share room with you on {{data.visitDateRange}} <button class="btn-info btn float-right" [routerLink]="['/currentRequest', data.findRoommatePostId]">View</button>
+  </li>
+</ul>
+<div *ngIf="showAll" class="text-center mt-4"><button class="btn-info btn" (click)="getAllNotification()">All notification</button></div>
+<div *ngIf="showMore" class="text-center mt-4"><button class="btn-info btn" (click)="loadMoreData()">Load more</button></div>

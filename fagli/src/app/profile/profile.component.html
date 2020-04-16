@@ -1,0 +1,71 @@
+<app-header></app-header>
+  <dl class="profileContainer row mx-auto mt-4 p-4 mb-5 text-white">
+    <div class="profileOverlay"></div>
+    <h4 class="h4 heading"><u>Profile Details</u><i data-toggle="modal" data-target="#profileDetailsModal" class="fas fa-edit" style="font-size:24px;"></i></h4>
+    <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_awesome5 -->
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">{{firstName}} {{lastName}}</dd>
+    <p class="line"></p>
+
+    <dt class="col-sm-3 text-truncate">Email Id</dt>
+    <dd class="col-sm-9">{{emailId}}</dd>
+
+  </dl>
+  <div class="modal fade" id="profileDetailsModal" tabindex="-1" role="dialog" aria-labelledby="profileDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileDetailsModalLabel">Update Hotel details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <form  id="profileUpdateForm" [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                          <label for="firstName">First Name</label>
+                          <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="Hotel name" [ngClass]="{ 'is-invalid': submitted && p.firstName.errors }">
+                          <div *ngIf="submitted && p.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="p.firstName.errors.required">First name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Hotel name" [ngClass]="{ 'is-invalid': submitted && p.lastName.errors }">
+                      <div *ngIf="submitted && p.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="p.lastName.errors.required">Last name is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="emailId">Email Id</label>
+                      <input type="text" formControlName="emailId" class="form-control" id="emailId" placeholder="Hotel name" [ngClass]="{ 'is-invalid': submitted && p.emailId.errors }">
+                      <div *ngIf="submitted && p.emailId.errors" class="invalid-feedback">
+                        <div *ngIf="p.emailId.errors.required">Email Id is required</div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+              </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showsuccess" class="alert alert-success" role="alert">
+    <strong>Congratulaions!</strong>
+    Signup successfully, Please login.
+    <button type="button" class="close" (click)="hideSuccessAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="showDanger" class="alert alert-danger" role="alert">
+    <strong>OOPS!</strong>
+    Getting some error, Please try again after few minutes.
+    <button type="button" class="close" (click)="hideDangerAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>

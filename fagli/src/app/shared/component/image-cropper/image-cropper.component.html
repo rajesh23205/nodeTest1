@@ -1,0 +1,40 @@
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageCropperModal">
+  Launch demo modal
+</button> -->
+
+<!-- <p (click)="showModal()">show</p> -->
+
+<!-- Modal -->
+<div class="modal fade" id="imageCropperModal" tabindex="-1" role="dialog" aria-labelledby="imageCropperModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageCropperModalLabel">Modal title2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input #imageInput style="display: none" type="file" (change)="fileChangeEvent($event)" />
+        <!-- <img class="cropped-image" [src]="croppedImage" /> -->
+        <app-image-uploader [isImage]="isImage" [imageUrl]="imageUrl" (cameraIconClicked)="imageInput.click()"></app-image-uploader>
+        <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            [resizeToWidth]="128"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveEditedImage()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

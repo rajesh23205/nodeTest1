@@ -40,7 +40,7 @@ module.exports = [[module.i, "@charset \"UTF-8\";\n/* open-sans-300 - latin */\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\nhtml {\n  min-height: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9EOlxccHJvamVjdFxcZmFnbGkvc3JjXFxzdHlsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBQTtBQVVBO0VBQ0UsZ0JBQWUsRUFBQSIsImZpbGUiOiJzcmMvc3R5bGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXG5ib2R5e1xuICAvLyBiYWNrZ3JvdW5kLWNvbG9yOiAjRjJGMkYyRjI7XG4gIC8vIGJhY2tncm91bmQtaW1hZ2U6IHVybChcImFzc2V0cy9pbWFnZS93YWxscGFwZXIvcmVnaXN0ZXJIb3RlbDMuanBnXCIpO1xuICAvLyBiYWNrZ3JvdW5kLXNpemU6IGF1dG8gMTAwJTtcbiAgLy8gYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgLy8gbWluLXdpZHRoOiAxMDAlO1xuICAvLyBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG59XG5cbmh0bWx7XG4gIG1pbi1oZWlnaHQ6MTAwJTtcbn1cbiJdfQ== */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\nhtml {\n  min-height: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9EOlxcZmFnbGlcXGZhZ2xpRkVcXG5vZGVUZXN0MVxcZmFnbGkvc3JjXFxzdHlsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBQTtBQVVBO0VBQ0UsZ0JBQWUsRUFBQSIsImZpbGUiOiJzcmMvc3R5bGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXG5ib2R5e1xuICAvLyBiYWNrZ3JvdW5kLWNvbG9yOiAjRjJGMkYyRjI7XG4gIC8vIGJhY2tncm91bmQtaW1hZ2U6IHVybChcImFzc2V0cy9pbWFnZS93YWxscGFwZXIvcmVnaXN0ZXJIb3RlbDMuanBnXCIpO1xuICAvLyBiYWNrZ3JvdW5kLXNpemU6IGF1dG8gMTAwJTtcbiAgLy8gYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgLy8gbWluLXdpZHRoOiAxMDAlO1xuICAvLyBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG59XG5cbmh0bWx7XG4gIG1pbi1oZWlnaHQ6MTAwJTtcbn1cbiJdfQ== */", '', '']]
 
 /***/ }),
 
@@ -680,10 +680,10 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project\fagli\src\styles.scss */"./src/styles.scss");
-__webpack_require__(/*! D:\project\fagli\node_modules\primeicons\primeicons.css */"./node_modules/primeicons/primeicons.css");
-__webpack_require__(/*! D:\project\fagli\node_modules\primeng\resources\themes\nova-light\theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
-module.exports = __webpack_require__(/*! D:\project\fagli\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
+__webpack_require__(/*! D:\fagli\fagliFE\nodeTest1\fagli\src\styles.scss */"./src/styles.scss");
+__webpack_require__(/*! D:\fagli\fagliFE\nodeTest1\fagli\node_modules\primeicons\primeicons.css */"./node_modules/primeicons/primeicons.css");
+__webpack_require__(/*! D:\fagli\fagliFE\nodeTest1\fagli\node_modules\primeng\resources\themes\nova-light\theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
+module.exports = __webpack_require__(/*! D:\fagli\fagliFE\nodeTest1\fagli\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
 
 
 /***/ })

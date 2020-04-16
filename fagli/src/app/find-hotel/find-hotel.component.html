@@ -1,0 +1,21 @@
+<app-header></app-header>
+<app-page-filter (applyFilter)=applyFilter($event) [areaList]="areaList" [cityList]="cityList"></app-page-filter>
+<div *ngFor="let hotel of data" class="responsive">
+  <div class="gallery">
+    <div class="hotleOverlay"></div>
+    <div class="card-body">
+      <div class="desc">
+        <h5 class="card-title">{{hotel.hotelName}}</h5>
+        <!-- <p>{{hotel.area}}</p>
+        <p>{{hotel.street}} {{hotel.city}}.</p> -->
+        <p class="card-text">{{hotel.area}} <br /> {{hotel.city}} <br /> {{hotel.state}}</p>
+        <p class="card-text">Available in <strong>{{hotel.minRoomCharge}}</strong></p>
+        <a [routerLink]="['/hotelDetails', hotel._id, hotel.userId]" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loadMore text-center mt-4 mb-4" *ngIf="!noMoreData && !loading"><button (click)="loadMoreData()" class="btn btn-light">load more</button></div>
+<div class="loadMore text-center mt-4 text-white mb-4" *ngIf="noMoreData && data.length > 0 && !loading"><button type="button" class="btn btn-light">No more data</button></div>
+<div class="loadMore text-center mt-4" *ngIf="loading"><button type="button" class="btn btn-light">Loading...</button></div>
+<div class="text-muted text-center mt-4" *ngIf="data.length === 0 && !loading"><button type="button" class="btn btn-light">Data not found</button></div>

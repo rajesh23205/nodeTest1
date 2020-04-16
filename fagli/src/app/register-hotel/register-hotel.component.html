@@ -1,0 +1,119 @@
+<app-header></app-header>
+<!-- <div class="container shadow bg-white"> -->
+<div class="container">
+  <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="registerOverlay"></div>
+        <h2 class="form-title text-center text-white">Register Hotel</h2>
+        <div class="form-group">
+              <label for="hotelName" class="text-white">Hotel Name</label>
+              <input type="text" formControlName="hotelName" class="form-control text-white" id="hotelName" placeholder="Hotel name" [ngClass]="{ 'is-invalid': submitted && f.hotelName.errors }">
+              <div *ngIf="submitted && f.hotelName.errors" class="invalid-feedback">
+                  <div *ngIf="f.hotelName.errors.required">Hotel name is required</div>
+              </div>
+        </div>
+        <div class="form-group">
+              <label class="text-white" for="minRoomCharge">Minimum Room Charge</label>
+             <select formControlName="minRoomCharge" class="form-control text-white" id="minRoomCharge" name="minRoomCharge" placeholder="Minimum room charge" [ngClass]="{ 'is-invalid': submitted && f.minRoomCharge.errors }">
+                <option value="" selected disabled>Please select</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+              </select>
+              <div *ngIf="submitted && f.minRoomCharge.errors" class="invalid-feedback">
+                  <div *ngIf="f.minRoomCharge.errors.required">Minimum room charge is required</div>
+              </div>
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="email">Email</label>
+            <input type="email" formControlName="email" class="form-control text-white" id="email" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="text-white" for="mobileNumber">Mobile Number</label>
+          <input type="number" formControlName="mobileNumber" class="form-control text-white" id="mobileNumber" placeholder="Mobile Number" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
+          <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.mobileNumber.errors.required">Mobile number is required</div>
+              <div *ngIf="f.mobileNumber.errors.pattern">Mobile number is not valid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-white" for="pincode">Pincode</label>
+          <input type="number" (keyup)="getAddressData($event)" maxlength="6" formControlName="postCode" class="form-control text-white" id="pincode" placeholder="Pincode" [ngClass]="{ 'is-invalid': submitted && f.postCode.errors }">
+          <div *ngIf="submitted && f.postCode.errors" class="invalid-feedback">
+              <div *ngIf="f.postCode.errors.required">Pincode is required</div>
+              <div *ngIf="f.postCode.errors.pincodeError">Pincode is not valid</div>
+          </div>
+        </div>
+        <div *ngIf="showDataLoader" class="loader"></div>
+        <div *ngIf="pinCodeDataFound" class="form-group">
+          <label class="text-white" for="area">Area</label>
+          <select formControlName="area" class="form-control text-white" id="area" name="area" placeholder="Select Area" [ngClass]="{ 'is-invalid': submitted && f.area.errors }">
+              <option value="" selected>Please Select Area</option>
+              <option *ngFor="let i of areaList">{{i}}</option>
+            </select>
+            <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
+                <div *ngIf="f.area.errors.required">Area is required</div>
+            </div>
+        </div>
+        <div *ngIf="pinCodeDataFound" class="form-group">
+          <label class="text-white" for="house">House Number</label>
+          <input type="text" formControlName="house" class="form-control text-white" id="house" placeholder="House No." [ngClass]="{ 'is-invalid': submitted && f.house.errors }">
+          <div *ngIf="submitted && f.house.errors" class="invalid-feedback">
+            <div *ngIf="f.house.errors.required">House No is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-white" for="street">Street</label>
+          <input type="text" formControlName="street" class="form-control text-white" id="street" placeholder="Street">
+      </div>
+      <div class="form-group">
+        <label class="text-white" for="address">Address</label>
+        <textarea type="text" formControlName="address" class="form-control text-white" id="address" placeholder="Address">
+
+        </textarea>
+    </div>
+        <!-- <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" formControlName="city" class="form-control" id="city" placeholder="City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                  <div *ngIf="f.city.errors.required">City is required</div>
+              </div>
+        </div> -->
+        <!-- <div class="form-group">
+              <label for="State">State</label>
+             <select formControlName="state" class="form-control" id="state" name="state" placeholder="State" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                <option value="" selected disabled>Please select</option>
+                <option value="New Delhi">New Delhi</option>
+                <option value="Bokaro">Bokaro</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="U.P.">U.P.</option>
+                <option value="M.P.">M.P.</option>
+              </select>
+              <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                  <div *ngIf="f.state.errors.required">City is required</div>
+              </div>
+            </div> -->
+            <div class="text-right">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+      </form>
+  </div>
+  <div *ngIf="showsuccess" class="alert alert-success" role="alert">
+  <strong>Congratulaions!</strong>
+    Registered successfully
+  <button type="button" class="close" (click)="hideSuccessAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="showDanger" class="alert alert-danger" role="alert">
+  <strong>OOPS!</strong>
+  Getting some error, Please try again after few minutes.
+  <button type="button" class="close" (click)="hideDangerAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

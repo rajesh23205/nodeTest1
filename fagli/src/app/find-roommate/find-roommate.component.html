@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container">
+  <form (ngSubmit)="onSubmit()">
+      <h2 class="form-title text-white  mb-4 pb-4">Invite Roommate</h2>
+      <div class="form-group">
+        <label for="dateRange" class="text-white">Select Date or Date Range</label><br>
+        <p-calendar [minDate]="minimumDate" name="dateRange" [(ngModel)]="dateValue" [selectionMode]="'range'" [readonlyInput]="true" [inputStyle]="{'background-color':'unset', 'color':'white', 'width':'225px'}"></p-calendar>
+        <div *ngIf="submitted && !dateValue" class="errorText">
+            Date or Date Range is required
+        </div>
+      </div>
+      <div class="form-group customWidth">
+          <label class="text-white" for="visitPurpose">Visit Purpose</label>
+          <select (change)="purposeChangeHandler($event)" name="visitPurpose" class="form-control" id="visitPurpose" name="visitPurpose" placeholder="Minimum room charge">
+            <option value="" selected>Please select</option>
+            <option value="Exam">Exam</option>
+            <option value="Tour">Tour</option>
+            <option value="Other">Others</option>
+          </select>
+          <div *ngIf="submitted && !visitPurpose" class="errorText">Visit Purpose is required
+          </div>
+      </div>
+      <div *ngIf="visitPurpose == 'Other'" class="form-group customWidth">
+        <label class="text-white" for="othersOptions">Other visit purpose</label>
+        <input type="text" name="otherOptionValue" [(ngModel)]="otherOptionValue" class="form-control" id="hotelName" placeholder="Other Purpose">
+        <div *ngIf="submitted && !otherOptionValue" class="errorText">
+            Other visit purpose is required
+        </div>
+      </div>
+      <div class="form-group customWidth">
+        <label class="text-white" for="details">Visit Details</label>
+        <textarea type=" text" name="visitDetails" [(ngModel)]="visitDetails" class="form-control" id="details" placeholder="Visit Details"></textarea>
+        <div *ngIf="submitted && !visitDetails" class="errorText">Visit Details is required</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div *ngIf="showsuccess" class="alert alert-success" role="alert">
+  <strong>Congratulaions!</strong>
+  Request has been sent successfully!!.
+  <button type="button" class="close" (click)="hideSuccessAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="showDanger" class="alert alert-danger" role="alert">
+  <strong>OOPS!</strong>
+  Getting some error, Please try again after few minutes.
+  <button type="button" class="close" (click)="hideDangerAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

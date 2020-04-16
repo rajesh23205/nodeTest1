@@ -1,0 +1,35 @@
+.center-align {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.appTitle{
+  margin: auto;
+  font-size: 100px;
+  font-style: italic;
+}
+
+.appDetails{
+  font-size: 20px;
+}
+
+.backgroundOverlay{
+  background-color: black;
+  opacity: 0.3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.homeContainer{
+  width: 80%;
+  position: relative;
+  margin: auto;
+}
+
+.homeInfoContainer{
+  margin-top: 5px;
+  position: relative;
+}

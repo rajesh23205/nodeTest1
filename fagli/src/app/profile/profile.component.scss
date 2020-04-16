@@ -1,0 +1,67 @@
+html {
+  font-size: 1rem;
+}
+
+.alert{
+  position: fixed;
+  right: 1%;
+  top: 5%;
+  width: 30%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 1.2rem;
+  }
+  dl{
+    width: 70%;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 1.4rem;
+  }
+  dl{
+    width: 70%;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 1.6rem;
+  }
+  dl{
+    width: 70%;
+  }
+}
+
+.line{
+  height: 1px;
+  width: 100%;
+  background-color: rgb(201, 209, 209);
+}
+
+.heading{
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  i{
+    float:right;
+  }
+}
+
+.profileOverlay{
+  height: 105%;
+  width: 103%;
+  background-color: black;
+  opacity: 0.2;
+  position: absolute;
+  z-index: -1;
+  margin-top: -3%;
+  margin-left: -3%;
+}
+
+.profileContainer{
+  position: relative;
+}

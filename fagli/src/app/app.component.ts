@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SubjectSharedService } from '../app/shared/services/subject.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fagli';
+  showLoader: Boolean = false;
+
+  constructor(
+    private subjectShareService: SubjectSharedService
+  ) {
+    this.subjectShareService.loader$.subscribe((userData) => {
+      this.showLoader = userData;
+    });
+  }
 }

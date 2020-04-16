@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row justify-content-md-center mt-4">
+    <div class="col-sm-4">
+      <app-image-uploader [isImage]="isImage" [imageUrl]="imageUrl" (cameraIconClicked)="showImageCropper()"></app-image-uploader>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-sm-4">
+      <form>
+        <div class="form-group">
+          <label for="debateTitle">Title</label>
+          <input type="text" class="form-control" id="debateTitle" aria-describedby="emailHelp" placeholder="Enter title">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="firstComment">Comment</label>
+          <textarea class="form-control" id="firstComment" rows="3" placeholder="Enter your comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-image-cropper (updateImageUrlEvent)="updateImageUrl($event)"></app-image-cropper>

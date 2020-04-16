@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div *ngFor="let user of requestList" class="responsive">
+  <div class="gallery">
+    <div class="card-body">
+      <div class="desc">
+        <h5 class="card-title">Hotel name</h5>
+        <p>{{user.visitPurpose}}</p>
+        <p>{{user.details}}</p>
+        <p>{{user.dateRange}}</p>
+        <!-- <p class="card-text">{{hotel.area}} <br /> {{hotel.city}} <br /> {{hotel.state}}</p>
+        <p class="card-text">Available in <strong>{{hotel.minRoomCharge}}</strong></p> -->
+        <!-- <a *ngIf="loggedUserId !== user.finderUserID" (click)="sendResponse(user._id)" class="btn btn-primary mb-2">Send response</a><br />
+        <a *ngIf="user.intreastedUsers.includes(loggedUserId) && loggedUserId !== user.finderUserID" (click)="sendResponse(user._id)" class="btn btn-primary mb-2">Response sent</a><br /> -->
+        <a [routerLink]="['/profile', user.finderUserID]" class="btn btn-primary">Hotel details WIP</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-muted text-center mt-4" *ngIf="requestList.length === 0">
+  <h6>Data Not Found</h6>
+</div>
+

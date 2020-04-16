@@ -1,0 +1,228 @@
+<app-header></app-header>
+<!-- <dl class="row mx-auto mt-4 p-4 shadow mb-5 bg-white"> -->
+<dl *ngIf="!isRemoved" class="hotelDetails row mx-auto mt-4 p-4 mb-5">
+  <div class="hotelDetailOverlay"></div>
+  <h4 class="h4 heading pb-4"><u>Hotel Details</u><i *ngIf="loggedInUserId == userId" data-toggle="modal" data-target="#hotelDetailsModal" class="fas fa-edit" style="font-size:24px;"></i></h4>
+  <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_awesome5 -->
+  <dt class="col-sm-5">Hotel Name</dt>
+  <dd class="col-sm-7">{{hotelName}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5">Email Id</dt>
+  <dd class="col-sm-7">{{email}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5">Mobile Number</dt>
+  <dd class="col-sm-7">{{mobileNumber}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Minimum Charge</dt>
+  <dd class="col-sm-7">Available in {{minRoomCharge}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">House No.</dt>
+  <dd class="col-sm-7">{{house}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Street</dt>
+  <dd class="col-sm-7">{{street}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Area</dt>
+  <dd class="col-sm-7">{{area}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">City</dt>
+  <dd class="col-sm-7">{{city}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">State</dt>
+  <dd class="col-sm-7">{{state}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Country</dt>
+  <dd class="col-sm-7">{{country}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Pin code</dt>
+  <dd class="col-sm-7">{{postCode}}</dd>
+  <p class="line"></p>
+
+  <dt class="col-sm-5 text-truncate">Full Address</dt>
+  <dd class="col-sm-7">{{address}}</dd>
+  <p class="line"></p>
+
+  <!-- <button *ngIf="loggedInUserId == userId" type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteHotelModal">
+    Delete
+  </button> -->
+  <div *ngIf="loggedInUserId == userId" class="deleteButton text-right">
+      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteHotelModal">Delete</button>
+    </div>
+  <!-- <div *ngIf="loggedInUserId == userId" class="text-center buttonContainer mt-4">
+    <button class="btn-primary btn">Delete</button>
+ </div> -->
+
+  <!-- <dt class="col-sm-5 text-truncate">Looking For Roommates</dt>
+  <dd class="col-sm-7">{{intreastedCount}} <button class="btn-info btn" [routerLink]="['/lookingForRoommateList', hotelId]" *ngIf="intreastedCount">Find</button></dd>
+
+  <div class="text-center buttonContainer mt-4">
+     <button [routerLink]="['/findRoommate', hotelId, userId]" class="btn-primary btn">Find Roommate</button>
+  </div> -->
+
+  <!-- <dt class="col-sm-3">Nesting</dt>
+  <dd class="col-sm-9">
+    <dl class="row">
+      <dt class="col-sm-4">Nested definition list</dt>
+      <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+<p class="line"></p>
+    </dl>
+  </dd>
+<p class="line"></p> -->
+</dl>
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hotelDetailsModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="hotelDetailsModal" tabindex="-1" role="dialog" aria-labelledby="hotelDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hotelDetailsModalLabel">Update Hotel details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="container">
+              <form  id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <!-- <h1 class="form-title text-center">Register Hotel</h1> -->
+                  <div class="form-group">
+                        <label for="hotelName">Hotel Name</label>
+                        <input type="text" formControlName="hotelName" class="form-control" id="hotelName" placeholder="Hotel name" [ngClass]="{ 'is-invalid': submitted && f.hotelName.errors }">
+                        <div *ngIf="submitted && f.hotelName.errors" class="invalid-feedback">
+                            <div *ngIf="f.hotelName.errors.required">Hotel name is required</div>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                        <label for="minRoomCharge">Minimum Room Charge</label>
+                       <select formControlName="minRoomCharge" class="form-control" id="minRoomCharge" name="minRoomCharge" placeholder="Minimum room charge" [ngClass]="{ 'is-invalid': submitted && f.minRoomCharge.errors }">
+                          <option value="" selected disabled>Please select</option>
+                          <option value="300">300</option>
+                          <option value="400">400</option>
+                          <option value="500">500</option>
+                        </select>
+                        <div *ngIf="submitted && f.minRoomCharge.errors" class="invalid-feedback">
+                            <div *ngIf="f.minRoomCharge.errors.required">Minimum room charge is required</div>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="number" formControlName="mobileNumber" class="form-control" id="mobileNumber" placeholder="Mobile Number" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
+                        <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                          <div *ngIf="f.mobileNumber.errors.required">Mobile number is required</div>
+                          <div *ngIf="f.mobileNumber.errors.pattern">Mobile number is not valid</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="number" (keyup)="getAddressData($event)" maxlength="6" formControlName="postCode" class="form-control" id="pincode" placeholder="Pincode" [ngClass]="{ 'is-invalid': submitted && f.postCode.errors }">
+                    <div *ngIf="submitted && f.postCode.errors" class="invalid-feedback">
+                        <div *ngIf="f.postCode.errors.required">Pincode is required</div>
+                        <div *ngIf="f.postCode.errors.pincodeError">Pincode is not valid</div>
+                    </div>
+                  </div>
+                  <div *ngIf="showDataLoader" class="loader"></div>
+                  <div *ngIf="pinCodeDataFound" class="form-group">
+                    <label for="area">Area</label>
+                    <select formControlName="area" class="form-control" id="area" name="area" placeholder="Select Area" [ngClass]="{ 'is-invalid': submitted && f.area.errors }">
+                        <option value="" selected>Please Select Area</option>
+                        <option *ngFor="let i of areaList">{{i}}</option>
+                      </select>
+                      <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
+                          <div *ngIf="f.area.errors.required">Area is required</div>
+                      </div>
+                  </div>
+                  <div *ngIf="pinCodeDataFound" class="form-group">
+                    <label for="house">House Number</label>
+                    <input type="text" formControlName="house" class="form-control" id="house" placeholder="House No." [ngClass]="{ 'is-invalid': submitted && f.house.errors }">
+                    <div *ngIf="submitted && f.house.errors" class="invalid-feedback">
+                      <div *ngIf="f.house.errors.required">House No is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" formControlName="street" class="form-control" id="street" placeholder="Street">
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea type="text" formControlName="address" class="form-control" id="address" placeholder="Address">
+                  </textarea>
+              </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<div *ngIf="showsuccess" class="alert alert-success" role="alert">
+  <strong>Congratulaions!</strong><br />
+  {{successMessage}}
+  <button type="button" class="close" (click)="hideSuccessAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="showDanger" class="alert alert-danger" role="alert">
+  <strong>OOPS!</strong><br />
+  Getting some error, Please try again after few minutes.
+  <button type="button" class="close" (click)="hideDangerAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- Delete confirmation popup -->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteHotelModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteHotelModal" tabindex="-1" role="dialog" aria-labelledby="deleteHotelModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteHotelModalLabel">Delete Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure, You want to delete this hotel?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteHotel()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hotle removed popup -->
+<div *ngIf="isRemoved" class="removedMessage">
+  <div class="hotelRemoveOverlay"></div>
+  Hotel has been removed
+</div>
+
