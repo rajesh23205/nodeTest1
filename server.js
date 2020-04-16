@@ -3,7 +3,9 @@ const app = express()
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const path = require('path');
+var mongoUtil = require( './server/mongoUtil' );
 
+mongoUtil.connectToServer();
 const api = require('./server/routes/api');
 
 app.use(express.static(path.join(__dirname, 'dist/fagli')));
