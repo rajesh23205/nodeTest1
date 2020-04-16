@@ -209,6 +209,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+
 
 
 
@@ -219,7 +221,7 @@ var routes = [
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [_app_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -334,6 +336,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _current_request_detail_current_request_detail_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./current-request-detail/current-request-detail.module */ "./src/app/current-request-detail/current-request-detail.module.ts");
 /* harmony import */ var _all_request_detail_all_request_detail_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./all-request-detail/all-request-detail.module */ "./src/app/all-request-detail/all-request-detail.module.ts");
 /* harmony import */ var _my_hotels_my_hotels_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./my-hotels/my-hotels.module */ "./src/app/my-hotels/my-hotels.module.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+
 
 
 
@@ -389,7 +393,7 @@ var AppModule = /** @class */ (function () {
                 _my_hotels_my_hotels_module__WEBPACK_IMPORTED_MODULE_22__["MyHotelModule"],
                 _error_page_error_page_module__WEBPACK_IMPORTED_MODULE_18__["ErrorPageModule"]
             ],
-            providers: [],
+            providers: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         })
     ], AppModule);
@@ -890,18 +894,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _find_hotel_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./find-hotel.component */ "./src/app/find-hotel/find-hotel.component.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+/* harmony import */ var _find_hotel_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./find-hotel.component */ "./src/app/find-hotel/find-hotel.component.ts");
+
 
 
 
 
 var routes = [
-    { path: 'findHotel', component: _find_hotel_component__WEBPACK_IMPORTED_MODULE_3__["FindHotelComponent"] },
+    { path: 'findHotel', component: _find_hotel_component__WEBPACK_IMPORTED_MODULE_4__["FindHotelComponent"] },
     { path: 'profile/:userId', redirectTo: '/profile/:userId', pathMatch: 'full' },
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var FindHotelRoutingModule = /** @class */ (function () {
@@ -1437,6 +1443,55 @@ var FindRoommateRoutingModule = /** @class */ (function () {
         })
     ], FindRoommateRoutingModule);
     return FindRoommateRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/guard/auth.guard.ts":
+/*!*************************************!*\
+  !*** ./src/app/guard/auth.guard.ts ***!
+  \*************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/data.service */ "./src/app/shared/services/data.service.ts");
+/* harmony import */ var _shared_services_subject_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/services/subject.service */ "./src/app/shared/services/subject.service.ts");
+
+
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(router, subjectShareService, dataService) {
+        this.router = router;
+        this.subjectShareService = subjectShareService;
+        this.dataService = dataService;
+    }
+    AuthGuard.prototype.canActivate = function () {
+        var loginData = this.dataService.getUserData();
+        if (loginData) {
+            return true;
+        }
+        else {
+            this.subjectShareService.showLoginModal(true);
+            return false;
+        }
+    };
+    AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _shared_services_subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectSharedService"],
+            _shared_services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -2014,18 +2069,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _hotel_details_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hotel-details.component */ "./src/app/hotel-details/hotel-details.component.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+/* harmony import */ var _hotel_details_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hotel-details.component */ "./src/app/hotel-details/hotel-details.component.ts");
+
 
 
 
 
 var routes = [
-    { path: 'hotelDetails/:hotelId/:userId', component: _hotel_details_component__WEBPACK_IMPORTED_MODULE_3__["HotelDetailsComponent"] },
+    { path: 'hotelDetails/:hotelId/:userId', component: _hotel_details_component__WEBPACK_IMPORTED_MODULE_4__["HotelDetailsComponent"], canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: 'profile/:userId', redirectTo: '/profile/:userId', pathMatch: 'full' },
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    // { path: 'hotelDetails/:hotelId/:userId',   redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var HotelDetailsRoutingModule = /** @class */ (function () {
@@ -2305,18 +2362,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _my_hotels_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./my-hotels.component */ "./src/app/my-hotels/my-hotels.component.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+/* harmony import */ var _my_hotels_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./my-hotels.component */ "./src/app/my-hotels/my-hotels.component.ts");
+
 
 
 
 
 var routes = [
-    { path: 'myHotels/:userId', component: _my_hotels_component__WEBPACK_IMPORTED_MODULE_3__["MyHotelsComponent"] },
+    { path: 'myHotels/:userId', component: _my_hotels_component__WEBPACK_IMPORTED_MODULE_4__["MyHotelsComponent"] },
     { path: 'profile/:userId', redirectTo: '/profile/:userId', pathMatch: 'full' },
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var MyHotelRoutingModule = /** @class */ (function () {
@@ -2844,17 +2903,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _profile_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+/* harmony import */ var _profile_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile.component */ "./src/app/profile/profile.component.ts");
+
 
 
 
 
 var routes = [
-    { path: 'profile/:userId', component: _profile_component__WEBPACK_IMPORTED_MODULE_3__["ProfileComponent"] },
+    { path: 'profile/:userId', component: _profile_component__WEBPACK_IMPORTED_MODULE_4__["ProfileComponent"] },
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var ProfileRoutingModule = /** @class */ (function () {
@@ -3035,18 +3096,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _register_hotel_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./register-hotel.component */ "./src/app/register-hotel/register-hotel.component.ts");
+/* harmony import */ var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../guard/auth.guard */ "./src/app/guard/auth.guard.ts");
+/* harmony import */ var _register_hotel_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./register-hotel.component */ "./src/app/register-hotel/register-hotel.component.ts");
+
 
 
 
 
 var routes = [
-    { path: 'registerHotel', component: _register_hotel_component__WEBPACK_IMPORTED_MODULE_3__["RegisterHotelComponent"] },
+    { path: 'registerHotel', component: _register_hotel_component__WEBPACK_IMPORTED_MODULE_4__["RegisterHotelComponent"] },
     { path: 'profile/:userId', redirectTo: '/profile/:userId', pathMatch: 'full' },
     { path: 'registerHotel', redirectTo: '/registerHotel', pathMatch: 'full' },
     { path: 'findHotel', redirectTo: '/findHotel', pathMatch: 'full' },
     { path: 'myHotels/:userId', redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+    { path: 'hotelDetails/:hotelId/:userId', redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full', canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 var RegisterHotelRoutingModule = /** @class */ (function () {

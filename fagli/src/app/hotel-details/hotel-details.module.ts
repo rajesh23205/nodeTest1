@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from '../guard/auth.guard';
 
 import { HotelDetailsRoutingModule } from './hotel-details.routing.module';
 import { HotelDetailsComponent } from './hotel-details.component';

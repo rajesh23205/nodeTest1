@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AuthGuard } from '../guard/auth.guard';
 import { FindHotelComponent } from './find-hotel.component';
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'registerHotel',   redirectTo: '/registerHotel', pathMatch: 'full' },
   { path: 'findHotel',   redirectTo: '/findHotel', pathMatch: 'full' },
   { path: 'myHotels/:userId',   redirectTo: '/myHotels/:userId', pathMatch: 'full' },
-  { path: 'hotelDetails/:hotelId/:userId',   redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' },
+  { path: 'hotelDetails/:hotelId/:userId',   redirectTo: '/hotelDetails/:hotelId/:userId', pathMatch: 'full' , canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/errorPage', pathMatch: 'full' }
 ];
 

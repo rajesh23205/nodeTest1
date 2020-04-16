@@ -23,6 +23,7 @@ import { NotificationModule } from './notification/notification.component.module
 import { CurrentRequestModule } from './current-request-detail/current-request-detail.module';
 import { AllRequestModule } from './all-request-detail/all-request-detail.module';
 import { MyHotelModule } from './my-hotels/my-hotels.module';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { MyHotelModule } from './my-hotels/my-hotels.module';
     MyHotelModule,
     ErrorPageModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
