@@ -23,7 +23,7 @@ export class MyHotelsComponent implements OnInit {
   limit = 4;
   count = 0;
   noMoreData: Boolean = false;
-  loading: Boolean = false;
+  loading: Boolean = true;
 
   constructor(
     private http: ApiService,

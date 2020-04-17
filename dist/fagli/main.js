@@ -2457,7 +2457,7 @@ var MyHotelsComponent = /** @class */ (function () {
         this.limit = 4;
         this.count = 0;
         this.noMoreData = false;
-        this.loading = false;
+        this.loading = true;
     }
     MyHotelsComponent.prototype.ngOnInit = function () {
         var _this = this;
