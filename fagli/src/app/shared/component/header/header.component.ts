@@ -121,10 +121,22 @@ export class HeaderComponent implements OnInit {
     this.http.post(this.routerLink, userData).subscribe(
       suc => {
         this.subjectShareService.showLoader(false);
+        const popupData = {
+          'success': true,
+          'header' : 'Congratulaions!',
+          'body' : 'Logout Successfully.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
         this.handleSuccess(suc);
       },
       err => {
         this.subjectShareService.showLoader(false);
+        const popupData = {
+          'success': false,
+          'header' : 'OOPS!',
+          'body' : 'Please retry.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
         console.log(err );
       }
     );

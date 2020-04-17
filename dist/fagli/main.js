@@ -247,7 +247,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div style=\"text-align:center\">\n  <h1>\n    Welcome to {{ title }}!\n  </h1>\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\n</div>\n<h2>Here are some links to help you start: </h2>\n<ul>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/tutorial\">Tour of Heroes</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/cli\">CLI Documentation</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://blog.angular.io/\">Angular blog</a></h2>\n  </li>\n</ul> -->\n\n<div class=\"appBackground\"></div>\n<div class=\"loaderOverlay wallpaperOverlay\"></div>\n<div *ngIf=\"showLoader\" class=\"loaderOverlay\"></div>\n<div *ngIf=\"showLoader\" class=\"loaderText\">\n  <div class=\"loader\"></div>\n  <p>Loading...</p>\n</div>\n<router-outlet></router-outlet>\n<app-signup></app-signup>\n<app-login></app-login>\n\n<div class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Signup successfully, Please login.\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div style=\"text-align:center\">\n  <h1>\n    Welcome to {{ title }}!\n  </h1>\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\n</div>\n<h2>Here are some links to help you start: </h2>\n<ul>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/tutorial\">Tour of Heroes</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/cli\">CLI Documentation</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://blog.angular.io/\">Angular blog</a></h2>\n  </li>\n</ul> -->\n\n<div class=\"appBackground\"></div>\n<div class=\"loaderOverlay wallpaperOverlay\"></div>\n<div *ngIf=\"showLoader\" class=\"loaderOverlay\"></div>\n<div *ngIf=\"showLoader\" class=\"loaderText\">\n  <div class=\"loader\"></div>\n  <p>Loading...</p>\n</div>\n<router-outlet></router-outlet>\n<app-signup></app-signup>\n<app-login></app-login>\n<app-success-error-msg></app-success-error-msg>\n\n<div class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Signup successfully, Please login.\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -3537,9 +3537,21 @@ var HeaderComponent = /** @class */ (function () {
         this.subjectShareService.showLoader(true);
         this.http.post(this.routerLink, userData).subscribe(function (suc) {
             _this.subjectShareService.showLoader(false);
+            var popupData = {
+                'success': true,
+                'header': 'Congratulaions!',
+                'body': 'Logout Successfully.'
+            };
+            _this.subjectShareService.errorSuccessPopup(popupData);
             _this.handleSuccess(suc);
         }, function (err) {
             _this.subjectShareService.showLoader(false);
+            var popupData = {
+                'success': false,
+                'header': 'OOPS!',
+                'body': 'Please retry.'
+            };
+            _this.subjectShareService.errorSuccessPopup(popupData);
             console.log(err);
         });
     };
@@ -4195,6 +4207,80 @@ var SignupComponent = /** @class */ (function () {
             _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"]])
     ], SignupComponent);
     return SignupComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/component/success-error-msg/success-error-msg.component.html":
+/*!*************************************************************************************!*\
+  !*** ./src/app/shared/component/success-error-msg/success-error-msg.component.html ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"showPopup\" [ngClass]=\"(isSuccess)?'alert alert-success fade show':'alert alert-danger fade show'\" role=\"alert\">\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <strong>{{headerText}}</strong><br/>\n  {{bodyText}}\n</div>\n<!-- <div class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div> -->\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/component/success-error-msg/success-error-msg.component.scss":
+/*!*************************************************************************************!*\
+  !*** ./src/app/shared/component/success-error-msg/success-error-msg.component.scss ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".alert {\n  position: fixed;\n  right: 1%;\n  top: 5%;\n  width: 30%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL2NvbXBvbmVudC9zdWNjZXNzLWVycm9yLW1zZy9EOlxcZmFnbGlcXGZhZ2xpRkVcXG5vZGVUZXN0MVxcZmFnbGkvc3JjXFxhcHBcXHNoYXJlZFxcY29tcG9uZW50XFxzdWNjZXNzLWVycm9yLW1zZ1xcc3VjY2Vzcy1lcnJvci1tc2cuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0VBQ2YsU0FBUztFQUNULE9BQU87RUFDUCxVQUFVLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zaGFyZWQvY29tcG9uZW50L3N1Y2Nlc3MtZXJyb3ItbXNnL3N1Y2Nlc3MtZXJyb3ItbXNnLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFsZXJ0e1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICByaWdodDogMSU7XHJcbiAgdG9wOiA1JTtcclxuICB3aWR0aDogMzAlO1xyXG4gIC8vIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/shared/component/success-error-msg/success-error-msg.component.ts":
+/*!***********************************************************************************!*\
+  !*** ./src/app/shared/component/success-error-msg/success-error-msg.component.ts ***!
+  \***********************************************************************************/
+/*! exports provided: SuccessErrorMsgComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SuccessErrorMsgComponent", function() { return SuccessErrorMsgComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_subject_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/subject.service */ "./src/app/shared/services/subject.service.ts");
+
+
+
+var SuccessErrorMsgComponent = /** @class */ (function () {
+    function SuccessErrorMsgComponent(subjectShareService) {
+        var _this = this;
+        this.subjectShareService = subjectShareService;
+        this.headerText = '';
+        this.bodyText = '';
+        this.showPopup = false;
+        this.isSuccess = true;
+        this.subjectShareService.successError$.subscribe(function (popupData) {
+            _this.showPopup = true;
+            _this.isSuccess = popupData['success'];
+            _this.headerText = popupData['header'];
+            _this.bodyText = popupData['body'];
+            setTimeout(function () {
+                _this.showPopup = false;
+            }, 3000);
+            // $('#signUpModal').modal('show');
+        });
+    }
+    SuccessErrorMsgComponent.prototype.ngOnInit = function () {
+    };
+    SuccessErrorMsgComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-success-error-msg',
+            template: __webpack_require__(/*! ./success-error-msg.component.html */ "./src/app/shared/component/success-error-msg/success-error-msg.component.html"),
+            styles: [__webpack_require__(/*! ./success-error-msg.component.scss */ "./src/app/shared/component/success-error-msg/success-error-msg.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_subject_service__WEBPACK_IMPORTED_MODULE_2__["SubjectSharedService"]])
+    ], SuccessErrorMsgComponent);
+    return SuccessErrorMsgComponent;
 }());
 
 
@@ -23559,6 +23645,8 @@ var SubjectSharedService = /** @class */ (function () {
         this.UserDataModal$ = this.UserDataModalSource.asObservable();
         this.loaderSource = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
         this.loader$ = this.loaderSource.asObservable();
+        this.successErrorSurce = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.successError$ = this.successErrorSurce.asObservable();
     }
     SubjectSharedService.prototype.showImageCropper = function (shouldShow) {
         this.imageCropperSource.next(shouldShow);
@@ -23605,6 +23693,13 @@ var SubjectSharedService = /** @class */ (function () {
     SubjectSharedService.prototype.showLoader = function (shouldShow) {
         this.loaderSource.next(shouldShow);
     };
+    /**
+   * Emit event to show error success
+   * @param popupData: value to show loader
+   */
+    SubjectSharedService.prototype.errorSuccessPopup = function (popupData) {
+        this.successErrorSurce.next(popupData);
+    };
     SubjectSharedService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -23646,6 +23741,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./component/signup/signup.component */ "./src/app/shared/component/signup/signup.component.ts");
 /* harmony import */ var _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./component/login/login.component */ "./src/app/shared/component/login/login.component.ts");
 /* harmony import */ var _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./component/page-filter/page-filter.component */ "./src/app/shared/component/page-filter/page-filter.component.ts");
+/* harmony import */ var _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./component/success-error-msg/success-error-msg.component */ "./src/app/shared/component/success-error-msg/success-error-msg.component.ts");
+
 
 
 
@@ -23676,7 +23773,8 @@ var SharedModule = /** @class */ (function () {
                 _component_image_uploader_image_uploader_component__WEBPACK_IMPORTED_MODULE_10__["ImageUploaderComponent"],
                 _component_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__["SignupComponent"],
                 _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
-                _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"]
+                _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"],
+                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -23699,7 +23797,8 @@ var SharedModule = /** @class */ (function () {
                 _component_image_uploader_image_uploader_component__WEBPACK_IMPORTED_MODULE_10__["ImageUploaderComponent"],
                 _component_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__["SignupComponent"],
                 _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
-                _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"]
+                _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"],
+                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"]
             ],
         })
     ], SharedModule);

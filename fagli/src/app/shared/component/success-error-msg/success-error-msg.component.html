@@ -1,0 +1,14 @@
+<div *ngIf="showPopup" [ngClass]="(isSuccess)?'alert alert-success fade show':'alert alert-danger fade show'" role="alert">
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>{{headerText}}</strong><br/>
+  {{bodyText}}
+</div>
+<!-- <div class="alert alert-danger fade show" role="alert">
+  <strong>OOPS!</strong>
+  Getting some error, Please try again after few minutes.
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div> -->

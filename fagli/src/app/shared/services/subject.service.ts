@@ -27,6 +27,9 @@ export class SubjectSharedService {
   private loaderSource: Subject<Boolean>;
   public loader$: Observable<Boolean>;
 
+  private successErrorSurce: Subject<any>;
+  public successError$: Observable<any>;
+
   constructor() {
     this.imageCropperSource = new Subject<Boolean>();
     this.imageCropper$ = this.imageCropperSource.asObservable();
@@ -48,6 +51,9 @@ export class SubjectSharedService {
 
     this.loaderSource = new Subject<Boolean>();
     this.loader$ = this.loaderSource.asObservable();
+
+    this.successErrorSurce = new Subject<Boolean>();
+    this.successError$ = this.successErrorSurce.asObservable();
   }
 
   showImageCropper(shouldShow: Boolean) {
@@ -100,5 +106,13 @@ export class SubjectSharedService {
    */
   showLoader(shouldShow: Boolean) {
     this.loaderSource.next(shouldShow);
+  }
+
+    /**
+   * Emit event to show error success
+   * @param popupData: value to show loader
+   */
+  errorSuccessPopup(popupData: any) {
+    this.successErrorSurce.next(popupData);
   }
 }
