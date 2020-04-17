@@ -3534,9 +3534,12 @@ var HeaderComponent = /** @class */ (function () {
     HeaderComponent.prototype.logoutClickHandler = function () {
         var _this = this;
         var userData = { '_id': this.userId };
+        this.subjectShareService.showLoader(true);
         this.http.post(this.routerLink, userData).subscribe(function (suc) {
+            _this.subjectShareService.showLoader(false);
             _this.handleSuccess(suc);
         }, function (err) {
+            _this.subjectShareService.showLoader(false);
             console.log(err);
         });
     };
@@ -3763,7 +3766,7 @@ var ImageUploaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"loginModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"loginModalLabel\">Login</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\">\n            <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.email.errors.required\">Password is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputPassword1\">Password</label>\n            <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\">\n            <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.password.errors.required\">Password is required.</div>\n          </div>\n          </div>\n          <div class=\"form-group\">\n            <div class=\"invalid-feedback\" class=\"error-string\">{{errorString}}</div>\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </form>\n        <div class=\"dropdown-divider\"></div>\n        <div>New around here? <span class=\"link-color\" (click)=\"onSignUpClick()\">Sign up</span></div>\n        <div>Forgot <span class=\"link-color\">password?</span></div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"successAlert\" class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Login successfully.\n  <button type=\"button\" class=\"close\" (click)=\"hideSuccessAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div *ngIf=\"dangerAlert\" class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" (click)=\"hideDangerAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"loginModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"loginModalLabel\">Login</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\">\n            <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.email.errors.required\">Password is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputPassword1\">Password</label>\n            <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\">\n            <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.password.errors.required\">Password is required.</div>\n          </div>\n          </div>\n          <div class=\"form-group\">\n            <div class=\"invalid-feedback\" class=\"error-string\">{{errorString}}</div>\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n        </form>\n        <div class=\"dropdown-divider\"></div>\n        <div>New around here? <span class=\"link-color\" (click)=\"onSignUpClick()\">Sign up</span></div>\n        <div>Forgot <span class=\"link-color\">password?</span></div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"successAlert\" class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Login successfully.\n  <button type=\"button\" class=\"close\" (click)=\"hideSuccessAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div *ngIf=\"dangerAlert\" class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" (click)=\"hideDangerAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -3811,6 +3814,7 @@ var LoginComponent = /** @class */ (function () {
         this.errorString = '';
         this.successAlert = false;
         this.dangerAlert = false;
+        this.submitText = 'Submit';
         this.subjectShareService.showLoginModal$.subscribe(function (show) {
             $('#loginModal').modal('show');
         });
@@ -3845,9 +3849,12 @@ var LoginComponent = /** @class */ (function () {
         if (this.loginForm.invalid) {
             return;
         }
+        this.submitText = 'Loading...';
         this.http.post(this.routerLink, this.loginForm.value).subscribe(function (suc) {
+            _this.submitText = 'Submit';
             _this.handleSuccess(suc);
         }, function (err) {
+            _this.submitText = 'Submit';
             console.log(err);
         });
         // display form values on success

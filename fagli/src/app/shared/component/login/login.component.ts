@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit,  AfterViewInit  {
   errorString: String = '';
   successAlert: Boolean = false;
   dangerAlert: Boolean = false;
+  submitText: String = 'Submit';
 
   constructor(
     private subjectShareService: SubjectSharedService,
@@ -61,13 +62,15 @@ export class LoginComponent implements OnInit,  AfterViewInit  {
     if (this.loginForm.invalid) {
         return;
     }
-
+    this.submitText = 'Loading...';
     this.http.post(this.routerLink, this.loginForm.value).subscribe(
       suc => {
-          this.handleSuccess(suc);
+        this.submitText = 'Submit';
+        this.handleSuccess(suc);
       },
       err => {
-          console.log(err );
+        this.submitText = 'Submit';
+        console.log(err );
       }
     );
 

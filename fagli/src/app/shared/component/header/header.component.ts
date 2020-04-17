@@ -117,12 +117,15 @@ export class HeaderComponent implements OnInit {
    */
   logoutClickHandler() {
     const userData = { '_id': this.userId };
+    this.subjectShareService.showLoader(true);
     this.http.post(this.routerLink, userData).subscribe(
       suc => {
-          this.handleSuccess(suc);
+        this.subjectShareService.showLoader(false);
+        this.handleSuccess(suc);
       },
       err => {
-          console.log(err );
+        this.subjectShareService.showLoader(false);
+        console.log(err );
       }
     );
   }
