@@ -27,6 +27,9 @@
             <div class="invalid-feedback" class="error-string">{{errorString}}</div>
           </div>
           <button type="submit" class="btn btn-primary">{{submitText}}</button>
+          <div *ngIf="showLoader" class="spinner-border spinner-border-sm ml-2" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </form>
         <div class="dropdown-divider"></div>
         <div>New around here? <span class="link-color" (click)="onSignUpClick()">Sign up</span></div>
