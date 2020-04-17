@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
   submitted = false;
   routerLink = 'signup';
   errorString: String = '';
+  showLoader: Boolean = false;
+  submitText: String = 'Submit';
 
   // profileForm = new FormGroup({
   //   firstName: new FormControl(''),
@@ -60,11 +62,17 @@ export class SignupComponent implements OnInit {
           return;
       }
 
+      this.submitText = 'Loading...';
+      this.showLoader = true;
       this.http.post(this.routerLink, this.registerForm.value).subscribe(
         suc => {
+          this.submitText = 'Submit';
+          this.showLoader = false;
             this.handleSuccess(suc);
         },
         err => {
+          this.submitText = 'Submit';
+          this.showLoader = false;
             console.log(err );
         }
       );
@@ -85,7 +93,7 @@ export class SignupComponent implements OnInit {
         $('#signUpModal').modal('hide');
         this.onReset();
         $('#success').show();
-      }else{
+      } else {
         this.errorString = successData.info;
       }
     }
