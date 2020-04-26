@@ -19,6 +19,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { PageFilterComponent } from './component/page-filter/page-filter.component';
 import { SuccessErrorMsgComponent } from './component/success-error-msg/success-error-msg.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SuccessErrorMsgComponent } from './component/success-error-msg/success-
     SignupComponent,
     LoginComponent,
     PageFilterComponent,
-    SuccessErrorMsgComponent
+    SuccessErrorMsgComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { SuccessErrorMsgComponent } from './component/success-error-msg/success-
     SignupComponent,
     LoginComponent,
     PageFilterComponent,
-    SuccessErrorMsgComponent
+    SuccessErrorMsgComponent,
+    ForgotPasswordComponent
   ],
 })
 export class SharedModule { }

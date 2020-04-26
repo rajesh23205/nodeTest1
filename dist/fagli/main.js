@@ -247,7 +247,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"appBackground\"></div>\r\n<div class=\"loaderOverlay wallpaperOverlay\"></div>\r\n<div *ngIf=\"showLoader\" class=\"loaderOverlay\"></div>\r\n<div *ngIf=\"showLoader\" class=\"loaderText\">\r\n  <div class=\"loader\"></div>\r\n  <p>Loading...</p>\r\n</div>\r\n<router-outlet></router-outlet>\r\n<app-signup></app-signup>\r\n<app-login></app-login>\r\n<app-success-error-msg></app-success-error-msg>\r\n"
+module.exports = "<div class=\"appBackground\"></div>\r\n<div class=\"loaderOverlay wallpaperOverlay\"></div>\r\n<div *ngIf=\"showLoader\" class=\"loaderOverlay\"></div>\r\n<div *ngIf=\"showLoader\" class=\"loaderText\">\r\n  <div class=\"loader\"></div>\r\n  <p>Loading...</p>\r\n</div>\r\n<router-outlet></router-outlet>\r\n<app-signup></app-signup>\r\n<app-login></app-login>\r\n<app-success-error-msg></app-success-error-msg>\r\n<app-forgot-password></app-forgot-password>\r\n"
 
 /***/ }),
 
@@ -3430,6 +3430,147 @@ var RegisterHotelModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/component/forgot-password/forgot-password.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/shared/component/forgot-password/forgot-password.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Modal -->\n<div class=\"modal fade\" id=\"forgotPasswordModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotPasswordModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"forgotPasswordModalLabel\">Forgot Password</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div *ngIf=\"!showSuccessMsg && !showErrorMsg\" class=\"modal-body\">\n          <form [formGroup]=\"forgotPasswordForm\" (ngSubmit)=\"onSubmit()\">\n              <div class=\"form-group\">\n                  <label for=\"exampleInputEmail1\">Email address</label>\n                  <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && fp.email.errors }\">\n                  <div *ngIf=\"submitted && fp.email.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"fp.email.errors.required\">Email Id is required.</div>\n                  </div>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n                <div *ngIf=\"showLoader\" class=\"spinner-border spinner-border-sm ml-2\" role=\"status\">\n                  <span class=\"sr-only\">Loading...</span>\n                </div>\n          </form>\n      </div>\n      <div *ngIf=\"showSuccessMsg\" class=\"modal-body\">\n        <div>Your password has been sent on {{mailId}}.</div>\n      </div>\n      <div *ngIf=\"showErrorMsg\" class=\"modal-body\">\n        <div>Getting some error. Please <a>retry.</a></div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/component/forgot-password/forgot-password.component.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/app/shared/component/forgot-password/forgot-password.component.scss ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9jb21wb25lbnQvZm9yZ290LXBhc3N3b3JkL2ZvcmdvdC1wYXNzd29yZC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/shared/component/forgot-password/forgot-password.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/shared/component/forgot-password/forgot-password.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: ForgotPasswordComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgotPasswordComponent", function() { return ForgotPasswordComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_subject_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/subject.service */ "./src/app/shared/services/subject.service.ts");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/shared/services/api.service.ts");
+
+
+
+
+
+var ForgotPasswordComponent = /** @class */ (function () {
+    function ForgotPasswordComponent(subjectShareService, formBuilder, http) {
+        this.subjectShareService = subjectShareService;
+        this.formBuilder = formBuilder;
+        this.http = http;
+        this.submitText = 'Submit';
+        this.submitted = false;
+        this.showLoader = false;
+        this.routerLink = 'forgotPassword';
+        this.showSuccessMsg = false;
+        this.showErrorMsg = true;
+        this.subjectShareService.showForgotPassword$.subscribe(function (show) {
+            $('#forgotPasswordModal').modal('show');
+        });
+    }
+    ForgotPasswordComponent.prototype.ngOnInit = function () {
+        this.createFormController();
+    };
+    Object.defineProperty(ForgotPasswordComponent.prototype, "fp", {
+        get: function () { return this.forgotPasswordForm.controls; },
+        enumerable: true,
+        configurable: true
+    });
+    ForgotPasswordComponent.prototype.createFormController = function () {
+        this.forgotPasswordForm = this.formBuilder.group({
+            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]]
+        });
+    };
+    ForgotPasswordComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.submitted = true;
+        if (this.forgotPasswordForm.invalid) {
+            return;
+        }
+        this.submitText = 'Loading...';
+        this.showLoader = true;
+        this.http.post(this.routerLink, this.forgotPasswordForm.value).subscribe(function (suc) {
+            _this.showLoader = false;
+            _this.submitText = 'Submit';
+            _this.handleSuccess(suc);
+        }, function (err) {
+            _this.showLoader = false;
+            _this.submitText = 'Submit';
+            console.log(err);
+            var popupData = {
+                'success': false,
+                'header': 'OOPS!',
+                'body': 'Please retry.'
+            };
+            _this.subjectShareService.errorSuccessPopup(popupData);
+        });
+    };
+    ForgotPasswordComponent.prototype.handleSuccess = function (successData) {
+        if (successData.err === 1) {
+            var popupData = {
+                'success': false,
+                'header': 'OOPS!',
+                'body': 'Please retry.'
+            };
+            this.subjectShareService.errorSuccessPopup(popupData);
+            this.showErrorMsg = true;
+        }
+        else {
+            this.showSuccessMsg = true;
+            if (successData.processCode === 1) {
+                this.subjectShareService.showLoader(false);
+                var popupData = {
+                    'success': true,
+                    'header': 'Congratulaions!',
+                    'body': 'Your password has been sent on your mail id ' + this.forgotPasswordForm.value.email + '.'
+                };
+                this.subjectShareService.errorSuccessPopup(popupData);
+                // this.dataService.setUserData(successData.data);
+                // this.subjectShareService.showUserNameInHeader(successData.data);
+                // this.
+                // toaster code and save display data
+            }
+            else {
+                // this.errorString = successData.info;
+            }
+        }
+    };
+    ForgotPasswordComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-forgot-password',
+            template: __webpack_require__(/*! ./forgot-password.component.html */ "./src/app/shared/component/forgot-password/forgot-password.component.html"),
+            styles: [__webpack_require__(/*! ./forgot-password.component.scss */ "./src/app/shared/component/forgot-password/forgot-password.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_subject_service__WEBPACK_IMPORTED_MODULE_3__["SubjectSharedService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _services_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"]])
+    ], ForgotPasswordComponent);
+    return ForgotPasswordComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/component/header/header.component.html":
 /*!***************************************************************!*\
   !*** ./src/app/shared/component/header/header.component.html ***!
@@ -3817,7 +3958,7 @@ var ImageUploaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"loginModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"loginModalLabel\">Login</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\">\n            <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.email.errors.required\">Password is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputPassword1\">Password</label>\n            <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\">\n            <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.password.errors.required\">Password is required.</div>\n          </div>\n          </div>\n          <div class=\"form-group\">\n            <div class=\"invalid-feedback\" class=\"error-string\">{{errorString}}</div>\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n          <div *ngIf=\"showLoader\" class=\"spinner-border spinner-border-sm ml-2\" role=\"status\">\n            <span class=\"sr-only\">Loading...</span>\n          </div>\n        </form>\n        <div class=\"dropdown-divider\"></div>\n        <div>New around here? <span class=\"link-color\" (click)=\"onSignUpClick()\">Sign up</span></div>\n        <div>Forgot <span class=\"link-color\">password?</span></div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"successAlert\" class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Login successfully.\n  <button type=\"button\" class=\"close\" (click)=\"hideSuccessAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div *ngIf=\"dangerAlert\" class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" (click)=\"hideDangerAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"loginModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"loginModalLabel\">Login</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\">\n            <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.email.errors.required\">Email Id is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputPassword1\">Password</label>\n            <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\">\n            <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n              <div *ngIf=\"f.password.errors.required\">Password is required.</div>\n          </div>\n          </div>\n          <div class=\"form-group\">\n            <div class=\"invalid-feedback\" class=\"error-string\">{{errorString}}</div>\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n          <div *ngIf=\"showLoader\" class=\"spinner-border spinner-border-sm ml-2\" role=\"status\">\n            <span class=\"sr-only\">Loading...</span>\n          </div>\n        </form>\n        <div class=\"dropdown-divider\"></div>\n        <div>New around here? <span class=\"link-color\" (click)=\"onSignUpClick()\">Sign up</span></div>\n        <div (click)=\"onForgotPasswordClick()\">Forgot <span class=\"link-color\">password?</span></div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"successAlert\" class=\"alert alert-success fade show\" role=\"alert\">\n  <strong>Congratulaions!</strong>\n  Login successfully.\n  <button type=\"button\" class=\"close\" (click)=\"hideSuccessAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div *ngIf=\"dangerAlert\" class=\"alert alert-danger fade show\" role=\"alert\">\n  <strong>OOPS!</strong>\n  Getting some error, Please try again after few minutes.\n  <button type=\"button\" class=\"close\" (click)=\"hideDangerAlert()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -3892,6 +4033,10 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.onSignUpClick = function () {
         $('#loginModal').modal('hide');
         this.subjectShareService.showSignupModal(true);
+    };
+    LoginComponent.prototype.onForgotPasswordClick = function () {
+        $('#loginModal').modal('hide');
+        this.subjectShareService.showForgotPasswordModal(true);
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -23698,6 +23843,8 @@ var SubjectSharedService = /** @class */ (function () {
         this.loader$ = this.loaderSource.asObservable();
         this.successErrorSurce = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
         this.successError$ = this.successErrorSurce.asObservable();
+        this.showForgotPasswordSource = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.showForgotPassword$ = this.showForgotPasswordSource.asObservable();
     }
     SubjectSharedService.prototype.showImageCropper = function (shouldShow) {
         this.imageCropperSource.next(shouldShow);
@@ -23751,6 +23898,13 @@ var SubjectSharedService = /** @class */ (function () {
     SubjectSharedService.prototype.errorSuccessPopup = function (popupData) {
         this.successErrorSurce.next(popupData);
     };
+    /**
+   * Emit event to display forgot password modal popup
+   * @param shouldShow: boolean to check should show or not
+   */
+    SubjectSharedService.prototype.showForgotPasswordModal = function (shouldShow) {
+        this.showForgotPasswordSource.next(shouldShow);
+    };
     SubjectSharedService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -23793,6 +23947,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./component/login/login.component */ "./src/app/shared/component/login/login.component.ts");
 /* harmony import */ var _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./component/page-filter/page-filter.component */ "./src/app/shared/component/page-filter/page-filter.component.ts");
 /* harmony import */ var _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./component/success-error-msg/success-error-msg.component */ "./src/app/shared/component/success-error-msg/success-error-msg.component.ts");
+/* harmony import */ var _component_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./component/forgot-password/forgot-password.component */ "./src/app/shared/component/forgot-password/forgot-password.component.ts");
+
 
 
 
@@ -23825,7 +23981,8 @@ var SharedModule = /** @class */ (function () {
                 _component_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__["SignupComponent"],
                 _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
                 _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"],
-                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"]
+                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"],
+                _component_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_19__["ForgotPasswordComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -23849,7 +24006,8 @@ var SharedModule = /** @class */ (function () {
                 _component_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__["SignupComponent"],
                 _component_login_login_component__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
                 _component_page_filter_page_filter_component__WEBPACK_IMPORTED_MODULE_17__["PageFilterComponent"],
-                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"]
+                _component_success_error_msg_success_error_msg_component__WEBPACK_IMPORTED_MODULE_18__["SuccessErrorMsgComponent"],
+                _component_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_19__["ForgotPasswordComponent"]
             ],
         })
     ], SharedModule);

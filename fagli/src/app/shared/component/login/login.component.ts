@@ -55,6 +55,11 @@ export class LoginComponent implements OnInit,  AfterViewInit  {
     this.subjectShareService.showSignupModal(true);
   }
 
+  onForgotPasswordClick() {
+    $('#loginModal').modal('hide');
+    this.subjectShareService.showForgotPasswordModal(true);
+  }
+
   onSubmit() {
     this.submitted = true;
     this.errorString = '';

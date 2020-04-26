@@ -30,6 +30,9 @@ export class SubjectSharedService {
   private successErrorSurce: Subject<any>;
   public successError$: Observable<any>;
 
+  private showForgotPasswordSource: Subject<Boolean>;
+  public showForgotPassword$: Observable<Boolean>;
+
   constructor() {
     this.imageCropperSource = new Subject<Boolean>();
     this.imageCropper$ = this.imageCropperSource.asObservable();
@@ -54,6 +57,10 @@ export class SubjectSharedService {
 
     this.successErrorSurce = new Subject<Boolean>();
     this.successError$ = this.successErrorSurce.asObservable();
+
+    this.showForgotPasswordSource = new Subject<Boolean>();
+    this.showForgotPassword$ = this.showForgotPasswordSource.asObservable();
+
   }
 
   showImageCropper(shouldShow: Boolean) {
@@ -114,5 +121,13 @@ export class SubjectSharedService {
    */
   errorSuccessPopup(popupData: any) {
     this.successErrorSurce.next(popupData);
+  }
+
+    /**
+   * Emit event to display forgot password modal popup
+   * @param shouldShow: boolean to check should show or not
+   */
+  showForgotPasswordModal(shouldShow: Boolean) {
+    this.showForgotPasswordSource.next(shouldShow);
   }
 }
