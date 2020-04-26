@@ -122,6 +122,40 @@ dl{
   .hotelDetails {
     width: 80%;
   }
+
+  .removedMessage{
+    width: 50%;
+    border: solid 3px;
+  }
+
+  .hotelRemoveOverlay{
+    margin-top: -4%;
+    margin-left: -5%;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .removedMessage{
+    width: 70%;
+    margin-top: 25%;
+  }
+
+  .hotelRemoveOverlay{
+    margin-top: -3%;
+    margin-left: -3%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .removedMessage{
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .removedMessage{
+    width: 85%;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -133,6 +167,12 @@ dl{
 @media screen and (max-width: 300px) {
   .hotelDetailOverlay {
     margin-left: -8%;
+  }
+}
+
+@media screen and (max-width: 230px) {
+  .removedMessage {
+    margin-top: 46%;
   }
 }
 

@@ -85,12 +85,26 @@ export class LoginComponent implements OnInit,  AfterViewInit  {
   handleSuccess(successData) {
     if (successData.err === 1) {
       $('#loginModal').modal('hide');
-      this.dangerAlert = true;
+      // this.dangerAlert = true;
+      const popupData = {
+        'success': false,
+        'header' : 'OOPS!',
+        'body' : 'Please retry.'
+      };
+      this.subjectShareService.errorSuccessPopup(popupData);
       // toster code
     } else {
       if (successData.processCode === 1) {
         $('#loginModal').modal('hide');
-        this.successAlert = true;
+        // this.successAlert = true;
+        this.subjectShareService.showLoader(false);
+        const popupData = {
+          'success': true,
+          'header' : 'Congratulaions!',
+          'body' : 'Login Successfully.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
+
         this.dataService.setUserData(successData.data);
         this.subjectShareService.showUserNameInHeader(successData.data);
         // this.
@@ -99,10 +113,10 @@ export class LoginComponent implements OnInit,  AfterViewInit  {
         this.errorString = successData.info;
       }
     }
-    setTimeout(() => {
-      this.successAlert = false;
-      this.dangerAlert = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.successAlert = false;
+    //   this.dangerAlert = false;
+    // }, 5000);
   }
 
   hideSuccessAlert() {

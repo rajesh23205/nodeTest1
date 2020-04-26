@@ -232,12 +232,18 @@ export class HotelDetailsComponent implements OnInit {
     this.subjectShareService.showLoader(true);
     this.http.post(this.routerLink2, this.registerForm.value).subscribe(
       suc => {
-          this.handleUpdateSuccess(suc);
           this.successMessage = this.updatedSuccessFully;
+          this.handleUpdateSuccess(suc);
           this.subjectShareService.showLoader(false);
       },
       err => {
           console.log(err );
+          const popupData = {
+            'success': false,
+            'header' : 'OOPS!',
+            'body' : 'Getting some server error, Please try again after few minutes.'
+          };
+          this.subjectShareService.errorSuccessPopup(popupData);
       }
     );
 
@@ -285,15 +291,27 @@ export class HotelDetailsComponent implements OnInit {
   handleUpdateSuccess(data) {
       if (data.res === 'success') {
         $('#hotelDetailsModal').modal('hide');
-        this.showsuccess = true;
+        // this.showsuccess = true;
+        const popupData = {
+          'success': true,
+          'header' : 'Congratulaions!',
+          'body' : this.successMessage
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
         this.callHotelData();
       } else {
-        this.showDanger = true;
+        // this.showDanger = true;
+        const popupData = {
+          'success': false,
+          'header' : 'OOPS!',
+          'body' : 'Getting some error, Please try again after few minutes.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
       }
-      setTimeout(() => {
-        this.showDanger = false;
-        this.showsuccess = false;
-      }, 5000);
+      // setTimeout(() => {
+      //   this.showDanger = false;
+      //   this.showsuccess = false;
+      // }, 5000);
   }
 
   hideSuccessAlert() {
@@ -315,7 +333,12 @@ export class HotelDetailsComponent implements OnInit {
       },
       err => {
         const msg = { res : 'error'};
-        this.handleDeleteSuccess(msg);
+        const popupData = {
+          'success': false,
+          'header' : 'OOPS!',
+          'body' : 'Getting some server error, Please try again after few minutes.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
       }
     );
   }
@@ -325,14 +348,26 @@ export class HotelDetailsComponent implements OnInit {
       this.successMessage = this.deleteSuccessMsg;
       this.subjectShareService.showLoader(false);
       this.isRemoved = true;
-      this.showsuccess = true;
+      const popupData = {
+        'success': true,
+        'header' : 'Congratulaions!',
+        'body' : this.successMessage
+      };
+      this.subjectShareService.errorSuccessPopup(popupData);
+      // this.showsuccess = true;
     } else {
-      this.showDanger = true;
+      // this.showDanger = true;
+      const popupData = {
+        'success': false,
+        'header' : 'OOPS!',
+        'body' : 'Getting some error, Please try again after few minutes.'
+      };
+      this.subjectShareService.errorSuccessPopup(popupData);
     }
-    setTimeout(() => {
-      this.showDanger = false;
-      this.showsuccess = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.showDanger = false;
+    //   this.showsuccess = false;
+    // }, 5000);
     // setTimeout(function() {
     //   this.router.navigate(['/findHotel', this.userId]);
     // });

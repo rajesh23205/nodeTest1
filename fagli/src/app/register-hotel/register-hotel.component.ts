@@ -149,23 +149,36 @@ export class RegisterHotelComponent implements OnInit {
     // $('#signUpModal').modal('hide');
     this.onReset();
     if (successData.res === 'success') {
-      this.showsuccess = true;
+      // this.showsuccess = true;
+      const popupData = {
+        'success': true,
+        'header' : 'Congratulaions!',
+        'body' : 'Registered successfully.'
+      };
+      this.subjectShareService.errorSuccessPopup(popupData);
     } else {
-      this.showDanger = true;
+      // this.showDanger = true;
+      this.subjectShareService.showLoader(false);
+        const popupData = {
+          'success': false,
+          'header' : 'OOPS!',
+          'body' : 'Getting some error, Please try again after few minutes.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
     }
-    setTimeout(() => {
-      this.showDanger = false;
-      this.showsuccess = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.showDanger = false;
+    //   this.showsuccess = false;
+    // }, 5000);
   }
 
 
-  hideSuccessAlert() {
-    this.showsuccess = false;
-  }
+  // hideSuccessAlert() {
+  //   this.showsuccess = false;
+  // }
 
-  hideDangerAlert() {
-    this.showDanger = false;
-  }
+  // hideDangerAlert() {
+  //   this.showDanger = false;
+  // }
 
 }
