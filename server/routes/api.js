@@ -469,7 +469,33 @@ router.post("/registerHotelSchema", function(req, res, next){
 
 router.post("/forgotPassword", function(req, res, next){
   var data = req.body;
-  res.send("forgotPassword");
+  var query = { 'email': data.email };
+  signUpSchema.find(query, function (err, userData) {
+    if(err){
+      console.log("error "+err);
+      res.json({res:"error"});
+    }else{
+      if(userData.length === 0){
+              res.json({
+                res:"success",
+                data:{
+                  isExist:false,
+                  msg:"EmailId not exist"
+                }
+              });
+      }else{
+        var password = userData[0].password;
+        res.json({
+          res:"success",
+          data:{
+            isExist:true,
+            password:password,
+            msg:"password Sent"
+          }
+        });
+      }
+    }
+  })
 })
 
 module.exports = router;
