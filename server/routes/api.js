@@ -6,6 +6,15 @@ const findRoommateSchema = require("../schema/findRoommateModal");
 const NotificationSchema = require("../schema/notificationModal");
 var mongoUtil = require( '../mongoUtil' );
 var commonUtils = require('../commonUtils');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'rajesh.komal311219@gmail.com',
+    pass: '311219@shadi'
+  }
+});
 
 
 /**
@@ -476,21 +485,70 @@ router.post("/forgotPassword", function(req, res, next){
       res.json({res:"error"});
     }else{
       if(userData.length === 0){
-              res.json({
-                res:"success",
-                data:{
-                  isExist:false,
-                  msg:"EmailId not exist"
-                }
-              });
-      }else{
-        var password = userData[0].password;
         res.json({
           res:"success",
+          isExist:false,
           data:{
-            isExist:true,
-            password:password,
-            msg:"password Sent"
+            isExist:false,
+            msg:"EmailId not exist"
+          }
+        });
+      }else{
+        var password = userData[0].password;
+        var mailOptions = {
+          from: 'rajesh.komal311219@gmail.com',
+          to: data.email,
+          subject: 'fugli password',
+          text: 'Your password is '+password
+        };
+        console.log('sent');
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log('error');
+            res.json({
+              res:"success",
+              isExist:true,
+              processCode:1,
+              data:{
+                isExist:true,
+                mailSent:false,
+                processCode:1,
+                // password:password,
+                msg:"password Sent",
+                error:error
+              }
+            });
+          } else {
+            console.log('success');
+            res.status(200).json(
+              {
+                  res:"success",
+                  processCode:1,
+                  isExist:true,
+                  data:{
+                    isExist:true,
+                    mailSent:true
+                  }
+                  // data:{
+                  //   isExist:true,
+                  //   mailSent:true,
+                  //   password:password,
+                  //   msg:"password Sent",
+                  //   info:info.response
+                  // }
+                }
+            )
+            // res.json({
+            //   res:"success",
+            //   data:{
+            //     isExist:true,
+            //     mailSent:true,
+            //     password:password,
+            //     msg:"password Sent",
+            //     info:info.response
+            //   }
+            // });
+            //https://stackoverflow.com/questions/59188483/error-invalid-login-535-5-7-8-username-and-password-not-accepted
           }
         });
       }

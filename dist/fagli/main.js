@@ -3437,7 +3437,7 @@ var RegisterHotelModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Modal -->\n<div class=\"modal fade\" id=\"forgotPasswordModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotPasswordModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"forgotPasswordModalLabel\">Forgot Password</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div *ngIf=\"!showSuccessMsg && !showErrorMsg\" class=\"modal-body\">\n          <form [formGroup]=\"forgotPasswordForm\" (ngSubmit)=\"onSubmit()\">\n              <div class=\"form-group\">\n                  <label for=\"exampleInputEmail1\">Email address</label>\n                  <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && fp.email.errors }\">\n                  <div *ngIf=\"submitted && fp.email.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"fp.email.errors.required\">Email Id is required.</div>\n                  </div>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n                <div *ngIf=\"showLoader\" class=\"spinner-border spinner-border-sm ml-2\" role=\"status\">\n                  <span class=\"sr-only\">Loading...</span>\n                </div>\n          </form>\n      </div>\n      <div *ngIf=\"showSuccessMsg\" class=\"modal-body\">\n        <div>Your password has been sent on {{mailId}}.</div>\n      </div>\n      <div *ngIf=\"showErrorMsg\" class=\"modal-body\">\n        <div>Getting some error. Please <a>retry.</a></div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<!-- Modal -->\n<div class=\"modal fade\" id=\"forgotPasswordModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotPasswordModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"forgotPasswordModalLabel\">Forgot Password</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div *ngIf=\"!showSuccessMsg && !showErrorMsg\" class=\"modal-body\">\n          <form [formGroup]=\"forgotPasswordForm\" (ngSubmit)=\"onSubmit()\">\n              <div class=\"form-group\">\n                  <label for=\"exampleInputEmail1\">Email address</label>\n                  <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" [ngClass]=\"{ 'is-invalid': submitted && fp.email.errors }\">\n                  <div *ngIf=\"submitted && fp.email.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"fp.email.errors.required\">Email Id is required.</div>\n                  </div>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">{{submitText}}</button>\n                <div *ngIf=\"showLoader\" class=\"spinner-border spinner-border-sm ml-2\" role=\"status\">\n                  <span class=\"sr-only\">Loading...</span>\n                </div>\n          </form>\n      </div>\n      <div *ngIf=\"showSuccessMsg\" class=\"modal-body\">\n        <div>Your password has been sent on {{mailId}}.</div>\n      </div>\n      <div *ngIf=\"showErrorMsg\" class=\"modal-body\">\n        <div>Getting some error. Please <a (click)=\"showErrorMsg = false\">retry.</a></div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3474,6 +3474,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ForgotPasswordComponent = /** @class */ (function () {
     function ForgotPasswordComponent(subjectShareService, formBuilder, http) {
+        var _this = this;
         this.subjectShareService = subjectShareService;
         this.formBuilder = formBuilder;
         this.http = http;
@@ -3484,10 +3485,14 @@ var ForgotPasswordComponent = /** @class */ (function () {
         this.showSuccessMsg = false;
         this.showErrorMsg = false;
         this.subjectShareService.showForgotPassword$.subscribe(function (show) {
+            _this.showSuccessMsg = false;
+            _this.showErrorMsg = false;
             $('#forgotPasswordModal').modal('show');
         });
     }
     ForgotPasswordComponent.prototype.ngOnInit = function () {
+        this.showSuccessMsg = false;
+        this.showErrorMsg = false;
         this.createFormController();
     };
     Object.defineProperty(ForgotPasswordComponent.prototype, "fp", {
@@ -3519,17 +3524,17 @@ var ForgotPasswordComponent = /** @class */ (function () {
             var popupData = {
                 'success': false,
                 'header': 'OOPS!',
-                'body': 'Please retry.'
+                'body': 'Getting server error. Please retry.'
             };
             _this.subjectShareService.errorSuccessPopup(popupData);
         });
     };
     ForgotPasswordComponent.prototype.handleSuccess = function (successData) {
-        if (successData.err === 1) {
+        if (!successData.isExist) {
             var popupData = {
                 'success': false,
                 'header': 'OOPS!',
-                'body': 'Please retry.'
+                'body': 'Email Id not found.'
             };
             this.subjectShareService.errorSuccessPopup(popupData);
             this.showErrorMsg = true;
@@ -3537,6 +3542,7 @@ var ForgotPasswordComponent = /** @class */ (function () {
         else {
             this.showSuccessMsg = true;
             if (successData.processCode === 1) {
+                this.mailId = this.forgotPasswordForm.value.email;
                 this.subjectShareService.showLoader(false);
                 var popupData = {
                     'success': true,

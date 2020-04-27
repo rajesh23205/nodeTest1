@@ -26,11 +26,15 @@ export class ForgotPasswordComponent implements OnInit {
     private http: ApiService
   ) {
     this.subjectShareService.showForgotPassword$.subscribe((show: Boolean) => {
+      this.showSuccessMsg = false;
+      this.showErrorMsg = false;
       $('#forgotPasswordModal').modal('show');
     });
   }
 
   ngOnInit() {
+    this.showSuccessMsg = false;
+    this.showErrorMsg = false;
     this.createFormController();
    }
 
@@ -62,7 +66,7 @@ export class ForgotPasswordComponent implements OnInit {
       const popupData = {
         'success': false,
         'header' : 'OOPS!',
-        'body' : 'Please retry.'
+        'body' : 'Getting server error. Please retry.'
       };
       this.subjectShareService.errorSuccessPopup(popupData);
     }
@@ -70,17 +74,18 @@ export class ForgotPasswordComponent implements OnInit {
    }
 
    handleSuccess(successData) {
-    if (successData.err === 1) {
+    if (!successData.isExist) {
       const popupData = {
         'success': false,
         'header' : 'OOPS!',
-        'body' : 'Please retry.'
+        'body' : 'Email Id not found.'
       };
       this.subjectShareService.errorSuccessPopup(popupData);
       this.showErrorMsg = true;
     } else {
       this.showSuccessMsg = true;
       if (successData.processCode === 1) {
+        this.mailId = this.forgotPasswordForm.value.email;
         this.subjectShareService.showLoader(false);
         const popupData = {
           'success': true,
