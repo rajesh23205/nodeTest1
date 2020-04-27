@@ -467,4 +467,9 @@ router.post("/registerHotelSchema", function(req, res, next){
   })
 })
 
+router.post("/forgotPassword", function(req, res, next){
+  var data = req.body;
+  res.send("forgotPassword");
+})
+
 module.exports = router;
