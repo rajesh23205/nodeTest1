@@ -85,7 +85,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.showErrorMsg = true;
     } else {
       this.showSuccessMsg = true;
-      if (successData.processCode === 1) {
+      if (successData.mailSent && successData.processCode === 1) {
         this.mailId = this.forgotPasswordForm.value.email;
         this.subjectShareService.showLoader(false);
         const popupData = {
@@ -101,6 +101,15 @@ export class ForgotPasswordComponent implements OnInit {
         // toaster code and save display data
       } else {
         // this.errorString = successData.info;
+        this.showLoader = false;
+        this.submitText = 'Submit';
+        this.serverErrorMsg = true;
+        const popupData = {
+          'success': false,
+          'header' : 'OOPS!',
+          'body' : 'Getting server error. Please retry.'
+        };
+        this.subjectShareService.errorSuccessPopup(popupData);
       }
     }
   }
