@@ -509,6 +509,7 @@ router.post("/forgotPassword", function(req, res, next){
               res:"success",
               isExist:true,
               processCode:1,
+              mailSent:false,
               data:{
                 isExist:true,
                 mailSent:false,
@@ -525,6 +526,7 @@ router.post("/forgotPassword", function(req, res, next){
                   res:"success",
                   processCode:1,
                   isExist:true,
+                  mailSent:true,
                   data:{
                     isExist:true,
                     mailSent:true

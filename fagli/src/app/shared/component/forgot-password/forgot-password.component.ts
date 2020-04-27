@@ -18,6 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
   routerLink: String = 'forgotPassword';
   showSuccessMsg: Boolean = false;
   showErrorMsg: Boolean = false;
+  serverErrorMsg: Boolean = false;
   mailId: String;
 
   constructor(
@@ -28,13 +29,12 @@ export class ForgotPasswordComponent implements OnInit {
     this.subjectShareService.showForgotPassword$.subscribe((show: Boolean) => {
       this.showSuccessMsg = false;
       this.showErrorMsg = false;
+      this.serverErrorMsg = false;
       $('#forgotPasswordModal').modal('show');
     });
   }
 
   ngOnInit() {
-    this.showSuccessMsg = false;
-    this.showErrorMsg = false;
     this.createFormController();
    }
 
@@ -62,6 +62,7 @@ export class ForgotPasswordComponent implements OnInit {
     err => {
       this.showLoader = false;
       this.submitText = 'Submit';
+      this.serverErrorMsg = true;
       console.log(err );
       const popupData = {
         'success': false,
