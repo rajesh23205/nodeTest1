@@ -3482,7 +3482,7 @@ var ForgotPasswordComponent = /** @class */ (function () {
         this.showLoader = false;
         this.routerLink = 'forgotPassword';
         this.showSuccessMsg = false;
-        this.showErrorMsg = true;
+        this.showErrorMsg = false;
         this.subjectShareService.showForgotPassword$.subscribe(function (show) {
             $('#forgotPasswordModal').modal('show');
         });

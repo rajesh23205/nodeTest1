@@ -17,7 +17,7 @@ export class ForgotPasswordComponent implements OnInit {
   showLoader: Boolean = false;
   routerLink: String = 'forgotPassword';
   showSuccessMsg: Boolean = false;
-  showErrorMsg: Boolean = true;
+  showErrorMsg: Boolean = false;
   mailId: String;
 
   constructor(
